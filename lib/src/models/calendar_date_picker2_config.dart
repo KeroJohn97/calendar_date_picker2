@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+enum CalendarInitialPageType {
+  first,
+  last,
+}
+
 enum CalendarDatePicker2Type {
   single,
   multi,

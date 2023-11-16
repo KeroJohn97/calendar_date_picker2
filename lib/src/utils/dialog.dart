@@ -17,6 +17,7 @@ Future<List<DateTime?>?> showCalendarDatePicker2Dialog({
   RouteSettings? routeSettings,
   String? barrierLabel,
   TransitionBuilder? builder,
+  CalendarInitialPageType initialPageType = CalendarInitialPageType.first,
 }) {
   var dialog = Dialog(
     insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
@@ -34,6 +35,7 @@ Future<List<DateTime?>?> showCalendarDatePicker2Dialog({
           CalendarDatePicker2WithActionButtons(
             value: value,
             config: config.copyWith(openedFromDialog: true),
+            initialPageType: initialPageType,
           ),
         ],
       ),
