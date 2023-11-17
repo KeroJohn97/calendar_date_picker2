@@ -5,7 +5,6 @@ class CalendarDatePicker2WithActionButtons extends StatefulWidget {
   const CalendarDatePicker2WithActionButtons({
     required this.value,
     required this.config,
-    required this.initialPageType,
     this.onValueChanged,
     this.onDisplayedMonthChanged,
     this.onCancelTapped,
@@ -29,9 +28,6 @@ class CalendarDatePicker2WithActionButtons extends StatefulWidget {
 
   /// The callback when ok button is tapped
   final Function? onOkTapped;
-
-  /// The initial page that the picker should display
-  final CalendarInitialPageType initialPageType;
 
   @override
   State<CalendarDatePicker2WithActionButtons> createState() =>
@@ -88,7 +84,6 @@ class _CalendarDatePicker2WithActionButtonsState
             config: widget.config,
             onValueChanged: (values) => _editCache = values,
             onDisplayedMonthChanged: widget.onDisplayedMonthChanged,
-            initialPageType: widget.initialPageType,
           ),
         ),
         SizedBox(height: widget.config.gapBetweenCalendarAndButtons ?? 10),

@@ -37,7 +37,6 @@ class CalendarDatePicker2 extends StatefulWidget {
   CalendarDatePicker2({
     required this.config,
     required this.value,
-    required this.initialPageType,
     this.onValueChanged,
     this.displayedMonthDate,
     this.onDisplayedMonthChanged,
@@ -81,9 +80,6 @@ class CalendarDatePicker2 extends StatefulWidget {
   /// Called when the displayed month changed
   final ValueChanged<DateTime>? onDisplayedMonthChanged;
 
-  /// The initial page that the picker should display
-  final CalendarInitialPageType initialPageType;
-
   @override
   State<CalendarDatePicker2> createState() => _CalendarDatePicker2State();
 }
@@ -102,20 +98,10 @@ class _CalendarDatePicker2State extends State<CalendarDatePicker2> {
   void initState() {
     super.initState();
     final config = widget.config;
-    DateTime initialDate =
-        widget.displayedMonthDate ?? DateUtils.dateOnly(DateTime.now());
-    switch (widget.initialPageType) {
-      case CalendarInitialPageType.first:
-        if (widget.value.isNotEmpty && widget.value.first != null)
-          initialDate =
-              DateTime(widget.value!.first!.year, widget.value!.first!.month);
-        break;
-      case CalendarInitialPageType.last:
-        if (widget.value.isNotEmpty && widget.value.last != null)
-          initialDate =
-              DateTime(widget.value!.last!.year, widget.value!.last!.month);
-        break;
-    }
+    final initialDate = widget.displayedMonthDate ??
+        (widget.value.isNotEmpty && widget.value[0] != null
+            ? DateTime(widget.value[0]!.year, widget.value[0]!.month)
+            : DateUtils.dateOnly(DateTime.now()));
     _mode = config.calendarViewMode;
     _currentDisplayedMonthDate = DateTime(initialDate.year, initialDate.month);
     _selectedDates = widget.value.toList();
